@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A text editor using speech recognition.">
+    <script type="module" src="js/compromise.js"></script>
+    <script type="module" src="js/config_handler.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <link rel="stylesheet" href="css/main_style.css">
+    <title>Speech Recognition Text Editor</title>
+  </head>
+  <body>
+     <div id="floating-message">
+        <span id="close-button">&times;</span>
+        <div id="message-content">
+            
+        </div>
+    </div>
+    <div class="container">
+    	<div class="column main-text">
+		 <div class="button-container">
+		 	<div class="left-column">
+			 	<button id="microphone-icon" class="microphone-button-black" aria-label="Toggle microphone on and off"></button>
+		 	</div>
+		 	<div class="right-column">
+				<div class="top-div">
+					<button id="undo-button" >Undo</button>
+					<button id="spell-button" >Spell</button>
+					<button id="config-button" >Config</button>
+				</div>
+		 		<div id="real-time-speech" class="real-time-result" ></div>
+	 		</div>
+		</div>
+	    	<div id="aggregated-speech" class="editor-area-class document-styling" contenteditable="plaintext-only" ></div>
+	    	
+	    	<div id="real-time-alternatives-outer" class="labeled-container main-section-margin default-hidden-state">
+	    		<span class="section-label main-section-background">Alternatives</span>
+			<div id="real-time-alternatives-content" ></div>
+		</div>
+		
+		<div id="words-editor-outer" class="labeled-container main-section-margin default-hidden-state">
+			<span class="section-label main-section-background">Words</span>
+			<div id="words-editor-content" class="scrollable-main-section"></div>
+		</div>
+		
+		<div id="sentence-editor-outer" class="labeled-container main-section-margin default-hidden-state">
+			<span class="section-label main-section-background" >Sentences</span>
+	    		<div id="sentence-editor-content" class="scrollable-main-section"></div>
+	    	</div>
+	    	
+	    	<div id="paragraph-editor-outer" class="labeled-container main-section-margin default-hidden-state">
+	    		<span class="section-label main-section-background" >Paragraphs</span>
+		    	<div id="paragraph-editor-content" class="paragraph-editor-section" ></div>
+		</div>
+
+	    	<div id="full-document-editable" class="full-document-div document-styling" contenteditable="plaintext-only" ></div>
+    	</div>
+    	<div id="config-area" class="column config-column">
+    		<div class="config-section labeled-container">
+    			<span class="section-label config-background">Language</span>
+    			<div id="language-selection-area"></div>
+    		</div>
+    		
+    		
+    		<div class="config-section labeled-container">
+    			<span class="section-label config-background">Auto-Replacements</span>
+	    		<div id="autoreplacements-config"></div>
+			<button id="add-replacement">New Phrase</button>
+		</div>
+		<div class="config-section labeled-container">
+			<span class="section-label config-background">Command Word</span>
+			<div>
+				<div>
+					<input id="command-word-config" class="user-phrase-list-box"></input>
+					<label for="command-word-config">command word</label>
+				</div>
+				<div>
+					<input id="escape-word-config" class="user-phrase-list-box"></input>
+					<label for="escape-word-config">escape word</label>
+				</div>
+			</div>
+		</div>
+		<div class="config-section labeled-container">
+			<span class="section-label config-background">Commands</span>
+			<div id="commands-config"></div>
+		</div>
+		<button id="delete-all-button">Delete All Browser Data</button>
+        </div>
+   </div>
+  </body>
+
+</html>
+

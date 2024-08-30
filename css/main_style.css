@@ -1,0 +1,265 @@
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px;
+}
+
+.column {
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.main-text{
+    display: flex;
+     width: 100%;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.config-column {
+    flex: 1;
+    background-color: #e0e0e0;
+    min-width: 350px;
+    max-width: 450px;
+    display: none;
+}
+
+.config-section {
+	margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+.replacement-list-box {
+    width: 15%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.user-phrase-list-box {
+    width: 40%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.scrollable-main-section {
+	overflow-y: auto;
+	max-height: 40vh;
+	flex: 1;
+}
+
+.paragraph-editor-section {
+	overflow-y: auto;
+	max-height: 60vh;
+	flex: 1;
+}
+
+.microphone-button-black {
+    width: 50px;
+    height: 50px;
+    background-image: url('../icons/microphone-black.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+    background-color: transparent; 
+}
+
+.microphone-button-red {
+    width: 50px;
+    height: 50px;
+    background-image: url('../icons/microphone-red.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+    background-color: transparent; 
+}
+
+.delete-icon {
+    width: 20px;
+    height: 20px;
+    background-image: url('../icons/cross.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent; 
+    border: none;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+    margin-left: 5px;
+}
+
+
+.microphone-button.red {
+            filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+
+.button-container {
+	margin: 0.1in;
+	display: flex;
+        width: 100%;
+}
+
+.left-column {
+            width: 50px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Aligns content at the top */
+}
+        
+.right-column {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.real-time-result {
+	min-height: 1em;
+	border: 1px solid #ddd;
+	margin-right: 0.2in;
+	margin-top: 10px;;
+}
+
+.editor-area-class {
+	overflow-y: auto;
+	max-height: 25vh;
+	min-height: 3em;
+	height: auto; /* Allows the div to grow with content */
+	flex-grow: 1;
+}
+
+/*
+.paragraph-editor-div {
+	border: 1px solid grey;
+	display: none;
+	overflow-y: auto;
+	height: 100vh;
+	flex-grow: 1;
+}
+*/
+
+.full-document-div {
+	overflow-y: auto;
+	height: 100vh;
+	flex-grow: 1;
+}
+
+.document-styling {
+	font-family: Georgia, 'Times New Roman', Times, serif; /* Use Georgia as the primary font */
+	font-size: 12pt;
+	line-height: 1.5;
+	margin: 0.1in;
+	background-color: #ffffff; /* White background */
+	color: #000000; /* Black text */
+	padding: 1em; /* Padding inside the div */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+
+.editor-id-num-active {
+  display: inline-block;
+  width: 3ch; /* Width of 3 digits */
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: right; /* Aligns numbers to the right within the span */
+  font-family: monospace; /* Ensures consistent character width */
+  background-color: #f0f0f0; /* Light gray background for visibility */
+  border: 1px solid #ccc; /* Optional: adds a border for better definition */
+  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.editor-parsed-token {
+	font-family: Georgia, 'Times New Roman', Times, serif; /* Use Georgia as the primary font */
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 12pt;
+	line-height: 1.5;	
+}
+
+.arContainer {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;    /* Center vertically */
+}
+
+
+
+#floating-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 300px;
+            display: none;
+}
+
+#close-button {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+}
+
+#message-content {
+            margin-top: 10px;
+}
+
+.labeled-container {
+  position: relative;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.config-background {
+	background-color: #e0e0e0;	
+}
+
+.main-section-background {
+	background-color: #f0f0f0;
+}
+
+.main-section-margin {
+  margin: 0.1in;
+}
+
+.default-hidden-state {
+	display: none;
+}
+
+.section-label {
+  position: absolute;
+  top: -0.7em;
+  left: 10px;
+  padding: 0 5px;
+  font-size: 12px;
+}
+
+

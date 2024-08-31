@@ -114,6 +114,10 @@ The speech recogniser sometimes produces several alternatives that it thought th
 
 **command title case <number>** - Make the first character of the chosen word a capital letter.
 
+**command undo** - Undo last action ("command back" can also be used).
+
 **command upper case <number>** - Convert the chosen word to upper case.
 
 **command words** - Open the words editor, moving the content of the buffer area into it, or selector the editor if not currently open.
+
+

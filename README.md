@@ -58,6 +58,8 @@ Sometimes the speech recogniser fails to type the correct word no matter what yo
 
 The speech recogniser sometimes produces several alternatives that it thought the user may have said. Where these are made available they are shown in the alternatives section below the buffer. If one of the alternatives is correct, you can say "command alternative" followed by the number and the text will be replaced with your selection.
 
+<p align="center"><img src="documentation/alternatives.png"/></p>
+
 ## Full Comand List
 
 **command alternative <number>** - The recogniser may present several versions of what it heard. Choose a recogniser alternative suggestion from alternatives section to replace what was heard in the buffer.

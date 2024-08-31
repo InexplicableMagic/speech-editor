@@ -2,13 +2,15 @@
 
 Many speech recognition word processor apps already exist on the web but few offer any facilities for voice based editing. The user is required to dictate the entire document from beginning to end with no mistakes. It is also assumed that the speech recognition engine will recognise every word perfectly, which is rarely the case. Speech Editor offers editing facilities such that errors can be corrected by voice without using the keyboard.
 
-# Online version
+## Online version
 
-A version of [Speech Editor is available for free here](https://leoncode.co.uk/apps/speech-editor/). 
+A version of [Speech Editor is available here (free)](https://leoncode.co.uk/apps/speech-editor/). 
 
-# Usage
+### Usage
 
 Speech Editor is based around paragraphs. The application is split into two parts. The top section is the 'buffer' area which holds the current paragraph being spoken. The lower section is the completed document. The user dictates a paragraph, which appears in the buffer area, and then adds it to the document by saying "command return". The user then dictates another paragraph and so on.
+
+<p align="center"><img src="documentation/buffer-area.png"/></p>
 
 To start speech recognition click the microphone icon. Not all web browsers offer a speech recognition service. At the time of writing, Chrome does but Firefox does not. You also will likely need to grant permission in your browser to use the microphone on first use. An error message should pop up if speech recognition is unavailable.
 
@@ -28,33 +30,37 @@ Any paragraph or sentence can be brought back into the buffer area by saying "co
 
 Many more commands are available (see the reference at the end).
 
-## Punctuation
+### Punctuation
 
 The editor handles punctuation. To insert these characters simply say the name of the relevant punctuation mark such as "comma", "full stop" (or "period"), "question mark" or "exclamation mark". The available set of punctuation marks can be fully configured. If you click the "config" button, the list of available symbols and the phrase which triggers them is listed under "auto replacements". New punctuation marks can be added to the list and the trigger phrases changed. The configuration is saved into the browser and will remain if the web page is reloaded.
+
+<p align="center"><img src="documentation/configure-auto-replacements.png" /></p>
 
 The drop-down menu to the right of each punctuation symbol defines the stylistic conventions that apply to the punctuation mark. For example a comma should typically be attached to the right of the preceding word and be followed by a space. To make another punctuation character follow this convention, choose "like comma" from the list. Other stylistic conventions are listed, choose the convention that is most appropriate for the character you wish to add.
 
 If you wish to say the word "comma", or any other punctuation mark, prefix it with the word "literal". For example say the phrase "literal comma" in order to insert the literal word "comma" instead of the punctuation symbol. This only leaves the problem of how to say the word "literal" which is achieved by saying it twice i.e. "literal literal".
 
-## Comand Word Config
+### Comand Word Config
 
 All of the command words can be modified in the config area. If you do not find the specific word I have set to be very intuitive, it can be changed. It is possible to add more than one command word to mean the same action. Multiple command words can be separated with the '|' character (vertical bar or pipe). This is useful when a command word is persistently mis-recognised. All of the incorrectly recognised versions of the same command word can be added as alternative versions, which makes the speech recognition less frustrating to use as then any of the alternatives will trigger the command.
+
+<p align="center"><img src="documentation/editing-commands.png"/></p>
 
 If the speech recogniser consistently fails to recognise a command word, you also try a completely different word or phrase that the recogniser can handle. For example, it almost never recognises the word "undo" correctly in my accent, so I have added "back" as an alternative which is more reliable. You can experiment to find which trigger words are most reliable for your accent.
 
 The "command" trigger word itself can also be changed and have alternatives. I often find the recogniser hears "commander" and so I have this set as well.
 
-## Spelling Mode
+### Spelling Mode
 
 Sometimes the speech recogniser fails to type the correct word no matter what you try. This is particularly so with homophones. For example I can never get it to write the word "cache" which is pronounced as "cash", the recogniser prefers the latter. For this problem there is spelling mode. If you say "command spell" Speech Editor will go into a mode where it uses phonetic spelling. That is you can say "alpha" for "a" and "beta" for "b" and so on to spell out a word. You can say any word that starts with the right letter and do not have to use any particular phonetic alphabet. To cancel the mode say "command spell" again.
 
-## Recogniser Alternatives
+### Recogniser Alternatives
 
 The speech recogniser sometimes produces several alternatives that it thought the user may have said. Where these are made available they are shown in the alternatives section below the buffer. If one of the alternatives is correct, you can say "command alternative" followed by the number and the text will be replaced with your selection.
 
-# Full Comand List
+## Full Comand List
 
-**command alternative <number>** - The recogniser may present several versions of what it heard. Choose an recogniser alternative suggestion from alternatives section, if correct to replace what was heard in the buffer.
+**command alternative <number>** - The recogniser may present several versions of what it heard. Choose a recogniser alternative suggestion from alternatives section to replace what was heard in the buffer.
 
 **command close** - Close the currently open editor that is highlighted in red. If closing words or sentences, the content of the editor will be moved back into the buffer section.
 

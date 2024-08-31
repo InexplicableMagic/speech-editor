@@ -4,7 +4,9 @@ Many speech recognition word processor apps already exist on the web but few off
 
 ## Online version
 
-A version of [Speech Editor is available here (free)](https://leoncode.co.uk/apps/speech-editor/). 
+A version of [Speech Editor is available here](https://leoncode.co.uk/apps/speech-editor/). 
+
+The current versions works best on **desktop** in the **Chrome** web browser.
 
 ### Usage
 

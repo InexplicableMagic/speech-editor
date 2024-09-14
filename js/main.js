@@ -773,7 +773,7 @@ function refreshSentenceEditor(parsed_sentences_array) {
 
 function refreshParagraphEditor(parsed_paragraphs_array, resplit=false) {
 	if(resplit)
-		parsed_paragraphs_array  = (parsed_paragraphs_array.join("\n\n")).split("\n\n");
+		parsed_paragraphs_array  = (parsed_paragraphs_array.join("\n")).trim().split(/\n{1,}/);
 		
 	refreshEditor(paragraphEditorDiv, parsed_paragraphs_array);
 	preserveStateLocalStorage();
@@ -1052,13 +1052,13 @@ function cutParagraphAfter(paragraph_num, cut_before=false, copy=false) {
 				if(!copy)
 					setUndoBufferCurrent(["paragraphs"]);
 				if( paragraph_num > paragraphs.length ){
-					pasteBuffer = paragraphs.join("\n\n").trim();
+					pasteBuffer = paragraphs.join("\n").trim();
 					if(!copy)
 						paragraphEditorDiv.innerHTML='';
 				}else{		
 					let beforeparagraphs = paragraphs.slice(0, paragraph_num-1);
 					let afterparagraphs = paragraphs.splice(paragraph_num-1);
-					pasteBuffer = join("\n\n").trim();
+					pasteBuffer = join("\n").trim();
 					if(!copy)
 						refreshParagraphEditor(afterparagraphs);
 				}
@@ -1069,13 +1069,13 @@ function cutParagraphAfter(paragraph_num, cut_before=false, copy=false) {
 					setUndoBufferCurrent(["paragraphs"]);
 				
 				if( paragraph_num == 0 ){
-					pasteBuffer= paragraphs.join('\n\n').trim();
+					pasteBuffer= paragraphs.join('\n').trim();
 					if(!copy)
 						paragraphEditorDiv.innerHTML='';
 				}else{
 					let initialparagraphs = paragraphs.slice(0, paragraph_num);
 					let cutparagraphs = paragraphs.splice(paragraph_num);
-					pasteBuffer = cutparagraphs.join("\n\n").trim();
+					pasteBuffer = cutparagraphs.join("\n").trim();
 					if(!copy)
 						refreshParagraphEditor(initialparagraphs);
 				}			
@@ -1520,7 +1520,7 @@ function appendParagraphToFullDocument(fullDocumentDivName, text) {
 		
 		let allParagraphs = parseParagraphs(fullDocTopElement.innerText);
 		allParagraphs.push( text );
-		fullDocTopElement.innerText = allParagraphs.join("\n\n");
+		refreshFullDocument( allParagraphs );
 		
 		preserveStateLocalStorage();
 		scrollDivEnd(fullDocTopElement, false);
@@ -1641,7 +1641,7 @@ function setEditorFocus(newFocus) {
 
 function parseParagraphs(text) {
 	// Split the text into paragraphs based on two or more newline characters
-	const paragraphs = text.split(/\n{2,}/);
+	const paragraphs = text.trim().split(/\n{1,}/);
 	let output = []
 	for(let paragraph of paragraphs){
 		paragraph = paragraph.trim();
@@ -1701,16 +1701,21 @@ function processDisplayWordsEditorCommand() {
 	setEditorFocus(wordsEditorMode);
 }
 
-function refreshFullDocument(fullDocumentDivName, paragraphs) {
-	emptyDivByName(fullDocumentDivName);
+function refreshFullDocument(paragraphs) {
+
 	if( paragraphs.length > 0 ){
+		fullDocTopElement.innerHTML='';
 		let output = []
 		for (let paragraph of paragraphs) {
 			paragraph = paragraph.trim();
-			if(paragraph.length > 0)
-				output.push(paragraph);
+			if(paragraph.length > 0){
+				let newParagraphElement = document.createElement("p");
+				newParagraphElement.textContent = paragraph;
+				fullDocTopElement.appendChild( newParagraphElement );
+				console.log("Added p");
+			}
 		}
-		fullDocTopElement.innerText = output.join("\n\n");
+				
 	}
 }
 
@@ -1718,7 +1723,7 @@ function closeParagraphEditor() {
 	if (currentlyOpenEditors.paragraph) {
 		setUndoBufferCurrent(["windowState", "paragraphs", "document"]);
 		let allParagraphs = getAllParagraphsFromParagraphEditor();
-		refreshFullDocument(fullDocumentDivName, allParagraphs);
+		refreshFullDocument(allParagraphs);
 		showDiv(fullDocumentDivName);
 		//Set the document to the same position
 		setScrollPercentageOfDiv(
@@ -2423,6 +2428,7 @@ function documentElementContentChange() {
 	bufferUndoStateBeforeUserEdit = {
 		document: fullDocTopElement.innerText.trim(),
 	};
+
 	preserveStateLocalStorage();
 	resetMicInactivityTimer();
 }
@@ -2489,7 +2495,7 @@ function preserveStateLocalStorage() {
 		
 			localStorage.setItem(
 				editorStorageKey + "lastDocument",
-				getAllParagraphsFromParagraphEditor().join("\n\n").trim()
+				getAllParagraphsFromParagraphEditor().join("\n").trim()
 			);
 			
 		}else{
@@ -2550,6 +2556,20 @@ function setEvents() {
 		"input",
 		debounce(documentElementContentChange, 1000),
 	);
+	
+	fullDocTopElement.addEventListener( 'paste', (event) => { 
+		const pastedText = (event.clipboardData || window.clipboardData).getData('text');
+		setTimeout(() => {
+			checkPastedTextContainsNewLine( pastedText )
+		}, 0);
+	} );	
+}
+
+function checkPastedTextContainsNewLine(pastedText){
+	if(pastedText.includes("\n")){
+		let paragraphs = parseParagraphs(fullDocTopElement.innerText);
+		refreshFullDocument( paragraphs );
+	}
 }
 
 function toggleSpellMode() {

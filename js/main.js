@@ -1712,7 +1712,6 @@ function refreshFullDocument(paragraphs) {
 				let newParagraphElement = document.createElement("p");
 				newParagraphElement.textContent = paragraph;
 				fullDocTopElement.appendChild( newParagraphElement );
-				console.log("Added p");
 			}
 		}
 				
@@ -2558,7 +2557,7 @@ function setEvents() {
 	);
 	
 	fullDocTopElement.addEventListener( 'paste', (event) => { 
-		const pastedText = (event.clipboardData || window.clipboardData).getData('text');
+		let pastedText = (event.clipboardData || window.clipboardData).getData('text');
 		setTimeout(() => {
 			checkPastedTextContainsNewLine( pastedText )
 		}, 0);
@@ -2566,10 +2565,14 @@ function setEvents() {
 }
 
 function checkPastedTextContainsNewLine(pastedText){
-	if(pastedText.includes("\n")){
-		let paragraphs = parseParagraphs(fullDocTopElement.innerText);
-		refreshFullDocument( paragraphs );
-	}
+
+	//Remove smart quotes, which the editor can't deal with
+	let after_replacements = fullDocTopElement.innerText.replace(/[‘’]/g, "'").replace(/[“”]/g, '"');
+	fullDocTopElement.innerText = after_replacements
+
+	let paragraphs = parseParagraphs(fullDocTopElement.innerText);
+	refreshFullDocument( paragraphs );
+
 }
 
 function toggleSpellMode() {

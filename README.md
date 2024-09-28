@@ -54,21 +54,25 @@ If you wish to say the actual word "*comma*", or the phrase representing any pun
 
 ### Command Word Config
 
-All of the command words can be modified in the config area. If you do not find the default phrase to be very intuitive, it can be changed. It is possible to add more than one command word to mean the same action. Multiple command words can be separated with the '|' character (vertical bar or pipe). This is useful when recognition of a command word persistently fails. All of the incorrectly recognised versions of the same command word can be added as alternative versions, which makes the speech recognition less frustrating to use as any of the alternatives will then trigger the command.
+All of the command words can be modified in the config area. If you do not find the default phrase to be very intuitive, it can be changed.
 
 <p align="center"><img src="documentation/editing-commands.png"/></p>
 
-If the speech recogniser consistently fails to recognise a command word, you also try a completely different word or phrase that the recogniser can handle. For example, it almost never recognises the word "*undo*" correctly in my accent, so I have added "*back*" as an alternative which is more reliable. You can experiment to find which trigger words are most reliable for your accent.
+It is possible to add more than one command word to mean the same action. Multiple command words can be separated with the '|' character (vertical bar or pipe). This is useful when recognition of a command word persistently fails. All of the incorrectly recognised versions of the same command word can be added as alternative versions, which makes the speech recognition less frustrating to use as any of the alternatives will then trigger the command.
+
+If the speech recogniser consistently fails to recognise a command word, you can try a completely different word or phrase that the recogniser can handle. For example, it almost never recognises the word "*undo*" correctly in my accent, so I have added "*back*" as an alternative which is more reliable. You can experiment to find which trigger words are most reliable for your accent.
 
 The "*command*" trigger word itself can also be changed and have alternatives. I often find the recogniser hears "*commander*" and so I have this set as well.
 
 ### Spelling Mode
 
-Sometimes the speech recogniser fails to type the correct word no matter what you try. This is particularly so with homophones. For example I can never get it to write the word "cache" which is pronounced as "cash", the recogniser always prefers the latter. For this problem there is spelling mode. If you say "*command spell*" Speech Editor will go into a mode where it uses phonetic spelling. That is you can say "alpha" for "a" and "beta" for "b" and so on to spell out a word. You can say any word that starts with the right letter and do not have to use any particular phonetic alphabet. To cancel the mode say "command spell" again.
+Sometimes the speech recogniser fails to type the correct word no matter what you try. This is particularly so with homophones (words that have the same pronunciation with different spellings). For example I can never get it to write the word "cache" which is pronounced the same as "cash", the recogniser always prefers the latter. For this problem there is spelling mode. If you say "*command spell*" Speech Editor will go into a mode where it uses phonetic spelling. That is you can say "alpha" for "a" and "beta" for "b" and so on to spell out a word. You can say any word that starts with the right letter and do not have to use any particular phonetic alphabet. To cancel the mode say "command spell" again.
+
+Spelling mode can also be enabled or cancelled using the "spell" button. When spelling mode is active, the button will be highlighted.
 
 ### Recogniser Alternatives
 
-The speech recogniser sometimes produces several alternatives that it thought the user may have said. Where these are made available by the recogniser they are shown in the alternatives section below the buffer. If one of the alternatives is correct, you can say "*command alternative*" followed by the number and the text will be replaced with your selection.
+The speech recogniser sometimes produces several alternatives that it thought the user may have said. Where these are made available by the recogniser they are shown in the alternatives section below the buffer. If one of the alternatives is correct, you can say "*command alternative*" followed by the relevant number and the text will be replaced with your selection.
 
 <p align="center"><img src="documentation/alternatives.png"/></p>
 
@@ -76,7 +80,7 @@ The speech recogniser sometimes produces several alternatives that it thought th
 
 **command alternative \<number\>** - The recogniser may present several versions of what it heard. Choose a recogniser alternative suggestion from alternatives section to replace what was heard in the buffer.
 
-**command close** - Close the currently open editor that is highlighted in red. If closing words or sentences, the content of the editor will be moved back into the buffer section.
+**command close** - Close the currently open editor that is highlighted in red. If closing words or sentences, the content of the editor will be moved back into the buffer section and replace whatever is there.
 
 **command cut \<number\>** - Remove a specific numbered item from either the words, sentences or paragraphs editor. The removed item can subsequently be pasted.
 
@@ -86,7 +90,7 @@ The speech recogniser sometimes produces several alternatives that it thought th
 
 **command cut buffer** - Cut all text currently in the buffer.
 
-**command cut last sentence** - Cut the last sentence spoken into the buffer area.
+**command cut last sentence** - Cut the last sentence spoken in the buffer area.
 
 **command empty** - Clear the buffer area.
 
@@ -94,7 +98,7 @@ The speech recogniser sometimes produces several alternatives that it thought th
 
 **command insert before \<number\>** - Insert any text currently in the buffer area prior to the specified point in the presently highlighted words, sentences or paragraphs editor.
 
-**command lower case \<number\>** - Convert the specified word number to lower case.
+**command lower case \<number\>** - Convert the specified word number to lower case. . Applies in the words editor only.
 
 **command move down \<number\>** - Move the specified sentence or paragraph, one position down in the editor.
 
@@ -110,26 +114,26 @@ The speech recogniser sometimes produces several alternatives that it thought th
 
 **command restore \<number\>** - Retrieve the numbered item in the sentences or paragraphs editor into the buffer.
 
-**command return** - Append the content of the buffer area into the words to the sentences or paragraphs editor that is currently highlighted. Otherwise append the buffer area directly to the full document.
+**command return** - Append the content of the buffer area to the full document. If an editor is open, then append the content of the buffer to the highlighted editor.
 
-**command scroll down** - scroll down the highlighted editor or the full document.
+**command scroll down** - Scroll down the full document, or the highlighted editor if open.
 
 **command scroll \<number\>** - Scroll to the numbered item in the highlighted editor.
 
-**command scroll up** - scroll up the highlighted editor or the full document.
+**command scroll up** - Scroll up the full document or highlighted editor, if open
 
-**command sentences** - Open the sentences editor and move the content of buffer area into it. If the editor is already open then highlight it.
+**command sentences** - Open the sentences editor and move the content of buffer area into it. If the editor is already open then highlight it. If the buffer is empty, nothing is done.
 
 **command shorten \<number\>** - Remove one character from the end of the specified word.
 
 **command spell** - Enter spelling mode or cancel it if currently active. Anything that is now said will be interpreted as a phonetic alphabet e.g. "alpha" means "a" and "beta" means "b" etc.
 
-**command title case \<number\>** - Make the first character of the chosen word a capital letter.
+**command title case \<number\>** - Make the first character of the chosen word a capital letter. Applies in the words editor only.
 
 **command undo** - Undo last action ("command back" can also be used).
 
-**command upper case \<number\>** - Convert the chosen word to upper case.
+**command upper case \<number\>** - Convert the chosen word to upper case. Applies in the words editor only.
 
-**command words** - Open the words editor, moving the content of the buffer area into it, or selector the editor if not currently open.
+**command words** - Open the words editor, moving the content of the buffer area into it, or selector the editor if not currently open. If the buffer is empty, nothing is done.
 
 
